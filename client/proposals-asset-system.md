@@ -1,4 +1,4 @@
-# Asset System
+# Asset System RFC
 
 ## Table of Contents
 1. [File Format](#File-Format)
@@ -41,6 +41,12 @@ The metadata file contains necessary information for the client to determine how
         "tracking",
         "rendering",
         "workbench"
+    ],
+    "dependencies": [
+        {
+            "id": "my-other-extension",
+            "version": "1.0.0"
+        }
     ]
 }
 ```
@@ -52,3 +58,4 @@ The metadata file contains necessary information for the client to determine how
 |`author`|The display name for the author for this asset.|
 |`version`|An object describing the asset's version and the required client version. <table><th>Key</th><th>Value</th><tr><td>`asset`</td><td>The asset's version in semantic versioning format.</td></tr><tr><td>`client`</td><td>The client version in semantic versioning format.</td></tr></table>|
 |`permissions`| An array of strings determining what aspects of the client scripts will need access to.|
+|`dependencies`| An array of objects determining the dependencies of this asset. The asset will not be loaded if a dependency is not found.<table><th>Key</th><th>Value</th><tr><td>`id`</td><td>The dependency asset's unique identifier.</td></tr><tr><td>`version`</td><td>The dependency asset's version in semantic versioning format.</td></tr></table>|
