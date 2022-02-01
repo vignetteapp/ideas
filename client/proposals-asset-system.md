@@ -35,7 +35,7 @@ The metadata file contains necessary information for the client to determine how
     "author": "The Vignette Authors",
     "version": {
         "asset": "1.0.0",
-        "client": "2022.201.0-github"
+        "spec": "1.0.0"
     },
     "permissions": [
         "tracking",
@@ -56,6 +56,6 @@ The metadata file contains necessary information for the client to determine how
 |`id`|The unique identifier for this asset.|
 |`name`|The display name for this asset.|
 |`author`|The display name for the author for this asset.|
-|`version`|An object describing the asset's version and the required client version. <table><th>Key</th><th>Value</th><tr><td>`asset`</td><td>The asset's version in semantic versioning format.</td></tr><tr><td>`client`</td><td>The client version in semantic versioning format.</td></tr></table>|
+|`version`|An object describing the asset's version and the required client version. <table><th>Key</th><th>Value</th><tr><td>`asset`</td><td>The asset's version in semantic versioning format.</td></tr><tr><td>`spec`</td><td>The asset specification version in semantic versioning format.</td></tr></table>|
 |`permissions`| An array of strings determining what aspects of the client scripts will need access to.|
 |`dependencies`| An array of objects determining the dependencies of this asset. The asset will not be loaded if a dependency is not found.<table><th>Key</th><th>Value</th><tr><td>`id`</td><td>The dependency asset's unique identifier.</td></tr><tr><td>`version`</td><td>The dependency asset's version in semantic versioning format.</td></tr></table>|
