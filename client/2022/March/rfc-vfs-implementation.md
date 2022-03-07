@@ -15,7 +15,7 @@ The VFS for the extensions are implemented as follows
 
 ```
  -------------------------
-|  Writeable Layer (/data) |   < ---- Mapped from $GAME_DIR/data/$EXT/
+|     Writeable Layer     |   < ---- Mapped from $GAME_DIR/data/$EXT/
  ------------------------- 
  ==========================
 |      Readonly Layer       |
