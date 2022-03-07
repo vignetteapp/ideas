@@ -15,7 +15,7 @@ The VFS for the extensions are implemented as follows
 
 ```
  -------------------------
-|     Writeable Layer     |   < ---- Mapped from $GAME_DIR/data/$EXT/
+|  Writeable Layer (/data) |   < ---- Mapped from $GAME_DIR/data/$EXT/
  ------------------------- 
  ==========================
 |      Readonly Layer       |
@@ -41,4 +41,4 @@ Of course, such security safeguards also poses limitations, as Vignette's extens
 
   - As the VAST file bundle is a ZIP-based system, you cannot modify your VAST bundle programmatically unless you recompile your VAST bundle.
 
-  - Vignette operates on the concept of least-privelege: this means you still need to explicitly tell the core to grant you FS access otherwise it will return a `HostError`.
+  - Vignette operates on the concept of least-privilege: this means you still need to explicitly tell the core to grant you FS access otherwise it will return a `HostError`.
