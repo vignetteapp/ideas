@@ -35,6 +35,8 @@ The VFS for the extensions are implemented as follows
 
 Of course, such security safeguards also poses limitations, as Vignette's extension system is not an all-encompassing runtime like Node.js, particularly the following:
 
+  - Extensions are isolated away from the host and each other, they can only read and write files within their own namespace.
+
   - File attributes are not available to the scripting side. Only basic operations such as listing, making, and removing files and directories are supported.
 
   - As the VAST file bundle is a ZIP-based system, you cannot modify your VAST bundle programmatically unless you recompile your VAST bundle.
