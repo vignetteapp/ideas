@@ -45,7 +45,7 @@ Data that is read through the filesystem API must be either `Buffer` or `Blob`, 
 
 ## Networking
 
-Vignette implements the asynchronous `fetch()` API as a module. `XMLHttpResponse()` is unsupported. 
+Vignette implements the asynchronous [`fetch()` API](https://developer.mozilla.org/en-US/docs/Web/API/fetch) as a module. `XMLHttpResponse()` is unsupported. 
 
 ```typescript
 import { fetch, Request, Response } from 'fetch';
