@@ -37,11 +37,15 @@ export function activate() {
 }
 ```
 
-The filesystem API only allows basic file operations, `readFile`, `unlink`, and `writeFile` and only takes a `Buffer` or a `Blob` as a input.
+The filesystem API only allows basic file operations, `readFile`, `unlink`, and `writeFile` and only takes a `Blob` as a input.
 
 ### Data Representation
 
-Data that is read through the filesystem API must be either `Buffer` or `Blob`, and vice versa must recieve a `Blob` or a `Buffer` too. This simplifies the need to create our own types.
+The intermediary data representation to the extension runtime must be a [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob). This achieves two objectives:
+
+* This allows extension authors to deal with raw buffers as they see fit in the JS environment - allowing them to use [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
+
+* This also is interopable with any existing knowledge of the Browser API, which smoothens out the learning curve to author an extension.
 
 ## Networking
 
