@@ -37,7 +37,7 @@ export function activate() {
 }
 ```
 
-The filesystem API only allows basic file operations, `readFile`, `unlink`, and `writeFile` and only takes a `Blob` as a input.
+The filesystem API only allows basic file operations, `readFile`, `rm`, `rmdir`, `mkdir` and `writeFile` and only takes a `Blob` as a input.
 
 ### Data Representation
 
