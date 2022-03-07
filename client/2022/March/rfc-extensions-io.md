@@ -25,7 +25,8 @@ Access to the file system is considered a dangerous permission to grant due to t
 Vignette's FS system will be a reduced version of the FS API of Node.js. A basic file operation may look something like this.
 
 ```typescript
-import { vignette, fs } from 'vignette';
+import { vignette } from 'vignette';
+import { fs } from 'fs';
 
 export function activate() {
     const fileBuf = fs.readFile('./data.txt');
@@ -44,7 +45,24 @@ Data that is read through the filesystem API must be either `Buffer` or `Blob`, 
 
 ## Networking
 
-Vignette implements the asynchronous `fetch()` API. `XMLHttpResponse()` is unsupported. However, `fetch()` will require the `net` intent otherwise Vignette will throw a `HostError`.
+Vignette implements the asynchronous `fetch()` API as a module. `XMLHttpResponse()` is unsupported. 
+
+```typescript
+import { fetch, Request, Response } from 'fetch';
+
+export async function activate() {
+   const reqObj = new Request('https://henke.moe');
+   const res = await fetch(reqObj);
+
+   if (typeof res === Response)
+     vignette.notification.send('info', 'Successfully queried to https://henke.moe');
+   else
+     vignette.notification.send('error', 'Error querying to remote.');
+}
+
+```
+
+However, `fetch()` will require the `net` intent otherwise Vignette will throw a `HostError`.
 
 ```
 HostError: Extension tried to access fetch() without the 'net' intent. Amend your extension's manifest to grant the intent.
