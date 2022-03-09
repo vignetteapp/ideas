@@ -179,7 +179,7 @@ interface IBodygroup {
     replaceModel: Promise<any>;
 }
 ```
-`BodygroupProvider`s must provide a `createBodygroups` method which returns a `Promise<Bodygroup[]>`. A `Bodygroup` must contain the ID of the bodygroup, `isVisible`, which allows the host to modify it's visibility, and a `replaceModel` method which facilitates the toggle to allow it to be visible within the viewport.
+`BodygroupProvider`s must provide a `createBodygroups` method which returns a `Promise<Bodygroup[]>`. A `Bodygroup` must contain the ID of the bodygroup, `isVisible`, which allows the host to modify it's visibility, and a `replaceModel` method which provides the function for the toggle to allow it to be visible within the viewport, which usually uses the lower-level rendering API provided in the Extension API.
 
 
 ### API Paradigms
