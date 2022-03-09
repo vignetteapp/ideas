@@ -59,11 +59,4 @@ Vignette may come with a interactive mode shell to test how these commands work 
 
 ### Allowed types in extension API
 
-Vignette does not impose restrictions on which data to transfer between extensions, and as such, any JavaScript data is allowed but not limited to the following:
-
-- `Blob`
-- `Object`
-- `Number`
-- `String`
-- `ReadableStream`
-- `boolean`
+Vignette does not impose restrictions on which data to transfer between extensions, and as such, any JavaScript data is allowed.
