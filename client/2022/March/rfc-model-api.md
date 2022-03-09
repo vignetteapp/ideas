@@ -8,7 +8,6 @@
 2. [API](#API)
       - [API Paradigms](#API-Paradigms)
       - [Potential Limitations](#Potential-Limitations)
-3. [Provider Lifecycle](#Provider-Lifecycle)
 
 ## Introduction
 
