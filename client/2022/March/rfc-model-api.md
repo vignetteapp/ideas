@@ -98,7 +98,6 @@ interface IRigProvider extends Disposable {
 interface Rig extends Disposable {
     // lifecycle
     init: Promise<ISkeleton>;
-    rigDefaultBones?: Promise<void>
     dispose: any;
 }
 ```
