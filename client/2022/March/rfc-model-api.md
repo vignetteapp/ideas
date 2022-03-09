@@ -6,8 +6,9 @@
 
 1. [Introduction](#Introduction)
 2. [API](#API)
+      - [Implementation](#Implementation)
       - [API Paradigms](#API-Paradigms)
-      - [Potential Limitations](#Potential-Limitations)
+
 
 ## Introduction
 
@@ -30,12 +31,16 @@ At best, a model provider should be able to provide the following:
 
 Modeled after [Visual Studio Code](https://code.visualstudio.com/api/language-extensions/overview)'s Language Support, Every model provider should start their life by registering the necessary functions which are used by the Model UI, namely:
 
-- The Model provider API: `vignette.model.registerProvider()`
+- The Model Provider API: `vignette.model.registerProvider()`
 - The Rig provider API: `vignette.model.registerRigProvider()`
 - The Model Bodygroup API: `vignette.model.registerBodygroupProvider()`
 - The Face Control API: `vignette.model.registerFaceProvider()`
 
 of course, calling the Extension API can be done directly inside the `activate()` function, with the option to get the Context of the extension as `vignette.ExtensionContext`.
+
+### Implementation
+
+// TODO: @LeNitrous, please add API implementation details here
 
 ### API Paradigms
 

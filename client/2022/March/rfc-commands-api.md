@@ -46,7 +46,7 @@ Commands are given their own specific recieving channel unique to each extension
 
 - A unique token aside from the vendor provided extension ID also ensures that only the intended recipient gets the message.
 
-- Commands are one way channels, and channels are disposed of immediately on restarts or when the target extension restarts and/or is replace by a newer version.
+- Commands are one way channels, and channels are disposed of immediately on restarts or when the target extension restarts and/or is replaced by a newer version.
 
 ### Allowed types in interactive mode
 
