@@ -184,7 +184,7 @@ interface IBodygroup {
 
 ### API Paradigms
 
-Following the principles stated in the introduction, our API follows the following:
+Following the principles stated in the introduction, our API should follow the following paradigms:
   - [**DRY**](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) - Do not Repeat Yourself Paradigm. That means we encourage code reuse as much as possible.
       - This also means that we already provide the necessary facilities such as the UI and the rendering primitives. All you need to do is implement your model format.
    - [**KISS**](https://en.wikipedia.org/wiki/KISS_principle) - Keep it Simple, Stupid. A paradigm established by the US. Navy in the 1960s, and is one of the core principles of the API design of Vignette. 
