@@ -48,9 +48,9 @@ of course, calling the Extension API can be done directly inside the `activate()
 Any model provider should have the following implementation details, as detailed by `IModelProvider`.
 
 ```typescript
-interface IModelProvider extends Disposable {
+interface IModelProvider extends IDisposable {
     createModel: Promise<Model>;
-    dispose: any;
+    dispose: void;
 }
 ```
 
@@ -63,12 +63,12 @@ A Model provider must provide a `createModel()` function that returns a `Model` 
 - Face Controls (Can be manipulated by `FaceProvider`)
 
 ```typescript
-interface IModel extends Disposable {
+interface IModel extends IDisposable {
     // Rendering and lifecycle
-    initialize: void;
-    draw: void;
-    update: void;
-    dispose: any;
+    initialize: Promise<void>;
+    draw: Promise<void>;
+    update: Promise<void>;
+    dispose: void;
     // Bones data
     // (always available but hidden if skeleton is defined)
     bones: Bone[];
@@ -86,19 +86,19 @@ interface IModel extends Disposable {
 Every model must have a rig provider to allow Vignette to manipulate the skeleton data in your model. This is implemented via `IRigProvider`.
 
 ```typescript
-interface IRigProvider extends Disposable {
+interface IRigProvider extends IDisposable {
     createRigData: Promise<Rig>;
-    dispose: any;
+    dispose: void;
 }
 ```
 
 `RigProvider`s must implement `createRigData` which returns a `Rig`, which when initialized, returns a `Skeleton`.
 
 ```typescript
-interface Rig extends Disposable {
+interface Rig extends IDisposable {
     // lifecycle
     init: Promise<ISkeleton>;
-    dispose: any;
+    dispose: void;
 }
 ```
 
@@ -134,9 +134,9 @@ function rigDefaultBones() {
 For the user to control the face parameters and/or allow the tracking interface to control them, a model provider must provide a `FaceProvider`, which facilitates the controls of the face control groups.
 
 ```typescript
-interface IFaceControl extends Disposable {
+interface IFaceControl extends IDisposable {
     createFaceController: Promise<Face>;
-    dispose: any;
+    dispose: void;
 }
 ```
 
