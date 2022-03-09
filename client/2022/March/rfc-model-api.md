@@ -40,7 +40,31 @@ of course, calling the Extension API can be done directly inside the `activate()
 
 ### Implementation
 
-// TODO: @LeNitrous, please add API implementation details here
+Any model provider should have the following implementation details, as detailed by `IModelProvider`.
+
+```typescript
+
+interface IModelProvider extends Disposable {
+    /// Method invocated by the host to update
+    /// the model whenever it recieves tracking data.
+    ///  @returns Promise<Model> 
+    onTrackingUpdate: Promise<Model>;
+    /// Method invocated to draw the model
+    /// @returns Promise<Model>
+    draw: Promise<Model>;
+    /// Method invocated whenever to update the model
+    /// Usually, this is needed if you need a new model
+    /// in the viewport.
+    /// @returns Promise<Model>
+    update: Promise<Model>;
+    /// dispose the Model provider when needed
+    /// @returns none
+    dispose: any;
+}
+
+```
+
+A Model provider must return a `Model` which will contain attributes needed by Vignette to manipulate the model within the UI or by other extensions.
 
 ### API Paradigms
 
