@@ -7,7 +7,11 @@
 1. [Introduction](#Introduction)
 2. [API](#API)
       - [Implementation](#Implementation)
-      - [Setting Tracking Defaults](#Setting-Tracking-Defaults)
+      - [Rig Providers](#Rig-Providers)
+         - [Setting Tracking Defaults](#setting-tracking-defaults)
+      - [Face Control Providers](#Face-Control-Providers)
+         - [Setting Facepoint Defaults](#setting-facepoint-defaults)
+      - [Bodygroup Providers](#bodygroup-providers)
       - [API Paradigms](#API-Paradigms)
 
 
@@ -65,8 +69,11 @@ interface IModel extends Disposable {
     draw: void;
     update: void;
     dispose: any;
-    // Skeleton data
+    // Bones data
+    // (always available but hidden if skeleton is defined)
     bones: Bone[];
+    // Skeleton data
+    skeleton?: Skeleton;
     // bodygroup data (nullable, since not all models has bodygroups)
     bodygroups?: Bodygroup[];
     // face control groups
@@ -74,19 +81,106 @@ interface IModel extends Disposable {
 }
 ```
 
-### Setting Tracking Defaults
+### Rig Providers
+
+Every model must have a rig provider to allow Vignette to manipulate the skeleton data in your model. This is implemented via `IRigProvider`.
+
+```typescript
+interface IRigProvider extends Disposable {
+    createRigData: Promise<Rig>;
+    dispose: any;
+}
+```
+
+`RigProvider`s must implement `createRigData` which returns a `Rig`, which when initialized, returns a `Skeleton`.
+
+```typescript
+interface Rig extends Disposable {
+    // lifecycle
+    init: Promise<ISkeleton>;
+    rigDefaultBones?: Promise<void>
+    dispose: any;
+}
+```
+
+```typescript
+interface ISkeleton {
+    Head: IHead;
+    Neck: IBone;
+    Arms: IArm[];
+    Hands: IHand[];
+    Hip: IHip;
+    Legs: ILeg[];
+}
+```
+
+`Rig`s outputs a `Skeleton`, which defines a standard data structure to allow Vignette to properly visualize your model's skeleton. The following types inherits Moetion's data types, which allows a more standardized format between each model formats.
+
+#### Setting Tracking Defaults
 
 Model providers via `RigProvider` can set where to assign the tracking skeleton to their model's bones, given their model format has a standard naming scheme. 
 
 ```typescript
 
-import { TrackingRegions } from './vignette'
+import { TrackingRegions, vignette } from './vignette'
 
 function rigDefaultBones() {
-    vignette.tracking.setDefaultTrackingRegion("ValveBiped.Bip0.Pelvis", TrackingRegion.Hip);
+    vignette.tracking.setDefaultTrackingRegion(Skeleton.Legs[1], TrackingRegions.Legs[1]);
 }
 
 ```
+
+### Face Control Providers
+
+For the user to control the face parameters and/or allow the tracking interface to control them, a model provider must provide a `FaceProvider`, which facilitates the controls of the face control groups.
+
+```typescript
+interface IFaceControl extends Disposable {
+    createFaceController: Promise<Face>;
+    dispose: any;
+}
+```
+
+```typescript
+interface IFace {
+    Eyebrows: IEyebrow[];
+    Eyes: IEye[];
+    Nose: Nose;
+    Mouth: Mouth;
+}
+```
+
+A `FaceProvider` must have a `createFaceController()` method that returns a `Promise<Face>` which is used by the host to determine the face control groups.
+
+#### Setting Facepoint Defaults
+
+Just like `RigProvider`, model providers has the ability to provide provide tracking defaults for the face control groups.
+
+```typescript
+import { TrackingRegions, vignette } from 'vignette';
+
+function rigDefaultBones() {
+    vignette.tracking.setDefaultTrackingRegion(Face.Eyebrows[1], TrackingRegions.FaceRegions.Eyebrows[1]);
+}
+```
+
+### Bodygroup Providers
+
+Some model formats may have definitions for bodygroups, which are baked models that are part of the base model. To allow Vignette to use this, a model provider must define a `BodygroupProvider`.
+
+```typescript
+interface IBodygroupProvider extends Disposable {
+    createBodygroups: Promise<Bodygroup[]>;
+}
+```
+```typescript
+interface IBodygroup {
+    id: string;
+    isVisible: boolean;
+    replaceModel: Promise<any>;
+}
+```
+`BodygroupProvider`s must provide a `createBodygroups` method which returns a `Promise<Bodygroup[]>`. A `Bodygroup` must contain the ID of the bodygroup, `isVisible`, which allows the host to modify it's visibility, and a `replaceModel` method which facilitates the toggle to allow it to be visible within the viewport.
 
 
 ### API Paradigms
