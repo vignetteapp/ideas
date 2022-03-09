@@ -159,7 +159,7 @@ Just like `RigProvider`, model providers has the ability to provide provide trac
 import { TrackingRegions, vignette } from 'vignette';
 
 function rigDefaultBones() {
-    vignette.tracking.setDefaultTrackingRegion(Face.Eyebrows[1], TrackingRegions.FaceRegions.Eyebrows[1]);
+    vignette.tracking.setDefaultTrackingRegion(Face.Eyebrows[1], TrackingRegions.Face.Eyebrows[1]);
 }
 ```
 
