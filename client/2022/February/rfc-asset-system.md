@@ -1,5 +1,7 @@
 # Asset System RFC
 
+*Author: [@LeNitrous](https//github.com/LeNitrous)*
+
 ## Table of Contents
 1. [File Format](#File-Format)
 2. [File System](#File-System)
