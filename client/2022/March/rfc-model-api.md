@@ -7,6 +7,7 @@
 1. [Introduction](#Introduction)
 2. [API](#API)
       - [Implementation](#Implementation)
+      - [Setting Tracking Defaults](#Setting-Tracking-Defaults)
       - [API Paradigms](#API-Paradigms)
 
 
