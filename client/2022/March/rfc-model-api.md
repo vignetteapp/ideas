@@ -96,7 +96,7 @@ The following types inherits Moetion's data types, which allows a more standardi
 
 #### Setting Tracking Defaults
 
-Model providers via `RigProvider` can set where to assign the tracking skeleton to their model's bones, given their model format has a standard naming scheme. 
+Model providers can set where to assign the tracking skeleton to their model's bones, given their model format has a standard naming scheme. 
 
 ```typescript
 
@@ -123,7 +123,7 @@ interface IFace {
 
 #### Setting Facepoint Defaults
 
-Just like `RigProvider`, model providers has the ability to provide provide tracking defaults for the face control groups.
+Just like `Skeleton`, model providers has the ability to provide provide tracking defaults for the face control groups.
 
 ```typescript
 import { TrackingRegions, vignette } from 'vignette';
