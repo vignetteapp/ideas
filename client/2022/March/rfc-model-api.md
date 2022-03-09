@@ -34,14 +34,14 @@ At best, a model provider should be able to provide the following:
 - Bodygroups
 - Face Controls
 
-Modeled after [Visual Studio Code](https://code.visualstudio.com/api/language-extensions/overview)'s Language Support, Every model provider should start their life by registering the necessary functions which are used by the Model UI, namely:
+Modeled after [Visual Studio Code](https://code.visualstudio.com/api/language-extensions/overview)'s Language Support, Every model provider has access to the following APIs:
 
 - The Model Provider API: `vignette.model.registerProvider()`
 - The Rig provider API: `vignette.model.registerRigProvider()`
 - The Model Bodygroup API: `vignette.model.registerBodygroupProvider()`
 - The Face Control API: `vignette.model.registerFaceProvider()`
 
-of course, calling the Extension API can be done directly inside the `activate()` function, with the option to get the Context of the extension as `vignette.ExtensionContext`.
+These APIs can be done called directly inside the `activate()` function, with the option to get the Context of the extension as `vignette.ExtensionContext`. However, every model provider must first and foremost always register a provider via `registerProvider()`.
 
 ### Implementation
 
