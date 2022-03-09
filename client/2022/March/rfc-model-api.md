@@ -175,7 +175,7 @@ interface IBodygroupProvider extends Disposable {
 ```typescript
 interface IBodygroup {
     id: string;
-    isVisible: boolean;
+    visible: boolean;
     replaceModel: Promise<any>;
 }
 ```
