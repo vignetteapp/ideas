@@ -1,6 +1,6 @@
 # Model API RFC
 
-*Author: [@sr229](https//git.io/sr229) and [@LeNitrous](https://github.com/LeNitrous)*
+*Author: [@sr229](https://git.io/sr229) and [@LeNitrous](https://github.com/LeNitrous)*
 
 ## Table of Contents
 

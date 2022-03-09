@@ -1,6 +1,6 @@
 # The Virtual Filesystem RFC
 
-*Author: [@sr229](https//git.io/sr229)*
+*Author: [@sr229](https://git.io/sr229)*
 
 ## Table of Contents
 1. [Introduction](#Introduction)
