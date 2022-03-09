@@ -54,7 +54,8 @@ Vignette may come with a interactive mode shell to test how these commands work 
 
 - `Number`
 - `String`
-- `Object` without any `Function`s.
+- `boolean`
+
 
 ### Allowed types in extension API
 
@@ -65,3 +66,4 @@ Vignette does not impose restrictions on which data to transfer between extensio
 - `Number`
 - `String`
 - `ReadableStream`
+- `boolean`
