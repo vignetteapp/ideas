@@ -17,7 +17,7 @@ The Model API is one of the core APIs that Vignette implements, and is one of th
 - The API must be robust and provide the necessary facilities for the developers.
 - The API should be abstracted enough so developers will not write platform-specific rendering APIs (OpenGL, Vulkan, WebGPU, etc.), but powerful enough to support their model format's specialized rendering techniques.
 
-- Registration of model providers should be as easy as one command invocation, and as much as possible **Model providers should not write their own UI to prevent fragmentation.**.
+- Registration of model providers should be as easy as one command invocation, and as much as possible **Model providers should not write their own UI to prevent fragmentation.**
 
 
 ## API
@@ -43,28 +43,50 @@ of course, calling the Extension API can be done directly inside the `activate()
 Any model provider should have the following implementation details, as detailed by `IModelProvider`.
 
 ```typescript
-
 interface IModelProvider extends Disposable {
-    /// Method invocated by the host to update
-    /// the model whenever it recieves tracking data.
-    ///  @returns Promise<Model> 
-    onTrackingUpdate: Promise<Model>;
-    /// Method invocated to draw the model
-    /// @returns Promise<Model>
-    draw: Promise<Model>;
-    /// Method invocated whenever to update the model
-    /// Usually, this is needed if you need a new model
-    /// in the viewport.
-    /// @returns Promise<Model>
-    update: Promise<Model>;
-    /// dispose the Model provider when needed
-    /// @returns none
+    createModel: Promise<Model>;
     dispose: any;
+}
+```
+
+A Model provider must provide a `createModel()` function that returns a `Model` which will provides the following:
+
+- Rendering and Lifecycle
+- Bone Data (Can be manipulated by `RigProvider`)
+    - `RigProvider` can use this data to set `TrackingRegionDefaults` which allows Vignette to automatically designate which part of the tracking skeleton can be assigned to the bone.
+- Bodygroup Data (Can be manipulated by `BodygroupProvider`)
+- Face Controls (Can be manipulated by `FaceProvider`)
+
+```typescript
+interface IModel extends Disposable {
+    // Rendering and lifecycle
+    initialize: void;
+    draw: void;
+    update: void;
+    dispose: any;
+    // Skeleton data
+    bones: Bone[];
+    // bodygroup data (nullable, since not all models has bodygroups)
+    bodygroups?: Bodygroup[];
+    // face control groups
+    faceFlexes: FaceControl[];
+}
+```
+
+### Setting Tracking Defaults
+
+Model providers via `RigProvider` can set where to assign the tracking skeleton to their model's bones, given their model format has a standard naming scheme. 
+
+```typescript
+
+import { TrackingRegions } from './vignette'
+
+function rigDefaultBones() {
+    vignette.tracking.setDefaultTrackingRegion("ValveBiped.Bip0.Pelvis", TrackingRegion.Hip);
 }
 
 ```
 
-A Model provider must return a `Model` which will contain attributes needed by Vignette to manipulate the model within the UI or by other extensions.
 
 ### API Paradigms
 
