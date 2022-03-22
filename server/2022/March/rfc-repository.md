@@ -10,7 +10,7 @@
 Vignette will operate an extension repostitory, inspired by the Debian's package repostory. The main goals of this RFC is to ensure an open future for all users, and to create an easily replicable structure, so third-party implementations can be created.
 
 ## Implementation
-The repository will be a plain HTTP(S) file server. This has many benefits, such as the ease of utilizing a CDN.
+At it's basic form, the repository will be a plain HTTP(S) file server. This has many benefits, such as the ease of utilizing a CDN.
 
 There are certain restrictions to the structure of the filesystem, and the filenames.
 
