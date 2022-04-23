@@ -3,7 +3,10 @@
 *Author: [@sr229](https://git.io/sr229)*
 
 ## Table of Contents
-<!-- TBD -->
+1. [Introdcution](#introduction)
+2. [Architecture](#architecture)
+    - [Lifecycle of a Event](#lifecycle-of-a-event)
+3. [Design Considerations](#design-considerations)
 
 ## Introduction
 
